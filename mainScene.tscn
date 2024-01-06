@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://cicuesanv6lih"]
+
+[ext_resource type="Texture2D" uid="uid://c4r8so2ot1403" path="res://resources/sprites/cat_juice.jpeg" id="1_wrmbj"]
+
+[sub_resource type="Environment" id="Environment_hremx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_if2i1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ninab"]
+albedo_color = Color(0.0666667, 0.627451, 0.0745098, 1)
+
+[node name="Root" type="Node"]
+
+[node name="Root3d" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Root3d"]
+environment = SubResource("Environment_hremx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Root3d"]
+offset_right = 1154.0
+offset_bottom = 650.0
+
+[node name="SubViewport" type="SubViewport" parent="Root3d/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Root3d/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.945519, 0.325568, 0, -0.325568, 0.945519, 0, 1, 2)
+
+[node name="Background" type="Node3D" parent="Root3d"]
+
+[node name="Floor" type="MeshInstance3D" parent="Root3d/Background"]
+transform = Transform3D(3.82832, 0, 0, 0, 1, 0, 0, 0, 5.26023, 0, -1, -4.57739)
+mesh = SubResource("PlaneMesh_if2i1")
+skeleton = NodePath("../../Entities")
+surface_material_override/0 = SubResource("StandardMaterial3D_ninab")
+
+[node name="Entities" type="Node3D" parent="Root3d"]
+
+[node name="Cat" type="Sprite3D" parent="Root3d/Entities"]
+transform = Transform3D(0.36, 0, 0, 0, 0.231, 0, 0, 0, 1, 0, 0, -5.59669)
+texture = ExtResource("1_wrmbj")
+
+[node name="RootUI" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="RootUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+text = "osasuna nunca se rinde"
